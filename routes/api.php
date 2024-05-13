@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ListVehiclesController;
+use App\Http\Controllers\{ListVehiclesController, SimulateVehicleController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('vehicles', ListVehiclesController::class)->name('api.vehicles.index');
+Route::post('vehicles/{id}', SimulateVehicleController::class)->name('api.vehicles.simulate');
