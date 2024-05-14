@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('vehicles', ListVehiclesController::class)->name('api.vehicles.index');
-Route::post('vehicles/{id}', SimulateVehicleController::class)->name('api.vehicles.simulate');
+Route::post('vehicles/{id}/simulate', SimulateVehicleController::class)->name('api.vehicles.simulate');

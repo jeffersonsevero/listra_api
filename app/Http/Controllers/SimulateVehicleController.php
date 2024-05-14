@@ -13,7 +13,7 @@ class SimulateVehicleController extends Controller
      */
     public function __invoke(SimulateVehicleRequest $request)
     {
-        $vehicle = Vehicle::query()->findOrFail($request->id);
+        $vehicle = Vehicle::query()->find($request->id);
 
         if (!$vehicle) {
             return response()->json(['message' => 'Veículo não encontrado.'], 404);
