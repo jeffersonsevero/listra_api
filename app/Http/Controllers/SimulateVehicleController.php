@@ -23,9 +23,12 @@ class SimulateVehicleController extends Controller
             return response()->json(['message' => 'O valor de entrada deve ser menor que ' . $vehicle->price . '.'], 422);
 
         }
-        $firstInstallment  = ($vehicle->price + ($vehicle->price * 0.1247) - $request->input_value) / 6;
-        $secondInstallment = ($vehicle->price + ($vehicle->price * 0.1556) - $request->input_value) / 12;
-        $thirdInstallment  = ($vehicle->price + ($vehicle->price * 0.1869) - $request->input_value) / 48;
+
+        /** @var Vehicle $vehicle */
+
+        $firstInstallment  = $vehicle->simulateTax(quantityOfInstallments: 6, inputValue: $request->input_value);
+        $secondInstallment = $vehicle->simulateTax(quantityOfInstallments: 12, inputValue: $request->input_value);
+        $thirdInstallment  = $vehicle->simulateTax(quantityOfInstallments:48, inputValue:$request->input_value);
 
         return response()->json([
             'first_installment'  => number_format($firstInstallment, 2, '.', ','),

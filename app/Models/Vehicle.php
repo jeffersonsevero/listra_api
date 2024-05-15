@@ -33,4 +33,16 @@ class Vehicle extends Model
             set: fn ($value) => $value * 100
         );
     }
+
+    public function simulateTax(int $quantityOfInstallments, $inputValue)
+    {
+
+        return match ($quantityOfInstallments) {
+            6  => $tax = ($this->price + ($this->price * 0.1247) - $inputValue) / 6,
+            12 => $tax = ($this->price + ($this->price * 0.1556) - $inputValue) / 12,
+            48 => $tax = ($this->price + ($this->price * 0.1869) - $inputValue) / 48,
+        };
+
+    }
+
 }
